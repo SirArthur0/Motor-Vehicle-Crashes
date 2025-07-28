@@ -14,20 +14,25 @@ df['Time AMPM'] = pd.to_datetime(df['Time'], format='%H:%M').dt.strftime('%I:%M 
 df.drop(columns='Time', inplace=True)
 df.rename(columns={'Time AMPM':'Time'}, inplace=True)
 
+# Concat NY to correctly locate County in PBI Map
+df['County Name'] = df['County Name'] + ', NY'
 
 # --- Remove comment to check data info  --- #
 
 # See df general info
 #print(df.info())
 
+# Checking first rows and columns
+print(df.head)
+
 # See df shape
 #print(df.shape)
 
-# Remove comment to see sum of null by column
+# Sum of null by column
 #pd.options.display.max_rows = 18
 #print(df.isnull().sum())
 
-# remove comment to see period range
+# Period range
 #print("From:", df['Date'].min(), "To:", df['Date'].max())
 
 # Save df into new csv file 
